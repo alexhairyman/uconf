@@ -59,7 +59,4 @@ namespace aval
   {
     return atoi(value.c_str());
   }
-
-  
-
 }

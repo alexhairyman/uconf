@@ -72,6 +72,7 @@ namespace aval
   {
     for (unsigned short i = 0; i < goodlinelist.size(); i++)
     {
+      ifdbg(std::cout << "~~~~~~~~~~~~~~~\nBEGINNING K/V PARSE\n~~~~~~~~~~~~~~~" << std::endl);
       std::string curstr = goodlinelist[i];
       unsigned short begkey, endkey, begval, endval;
       begkey = curstr.find_first_of(TOK_CHARS) - 1;
