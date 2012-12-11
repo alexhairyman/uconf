@@ -1,5 +1,6 @@
 // This is an uber simple file K boiz?
-#define VAL_DBG
+//#define VAL_DBG
+
 #ifdef VAL_DBG
   #define ifdbg(a) a
 #else
