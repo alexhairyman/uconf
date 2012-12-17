@@ -11,6 +11,7 @@
 #define VAL_HH
 
 
+#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
