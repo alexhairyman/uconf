@@ -1,7 +1,7 @@
 // This is an uber simple file K boiz?
 
-#define VAL_DBG
-#ifdef VAL_DBG
+#define VAL_DBG 1
+#if VAL_DBG
   #define ifdbg(a) a
 #else
   #define ifdbg(a) 
@@ -20,15 +20,26 @@
 
 namespace aval
 {
-  const std::string TOK_CHARS = "abcdefghijklmnopqrstuvwxyz_";
+  const std::string TOK_CHARS = "abcdefghijklmnopqrstuvwxyz_1234567890";
   class Value
   {
   private:
+    bool has_name_;
+    std::string name_;
     std::string keyval_;
     static int AsIntegral(std::string value);
     static double AsDouble(std::string value);
     
   public:
+    /** creates a 'broken' Value, but allows on the fly init later */
+    Value();
+    /** this will be used when actually parseing(spelling?) and such */
+    Value(std::string name, std::string valstr);
+
+    std::string GetName();
+    void SetValue(std::string* valstr);
+    void SetName(std::string* name);
+    bool HasName();
     void operator ()(std::string valstr);
     operator std::string();
     operator int();
