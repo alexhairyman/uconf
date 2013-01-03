@@ -2,7 +2,6 @@
 
 #include "valerr.hh"
 
-
 namespace aval
 {
 
@@ -29,24 +28,58 @@ namespace aval
     this->has_name_ = true;
   }
 
-  bool ValueSection::ValueExists(std::string name)
+  ValueSection* ValueSection::GetSection(std::string name)
   {
-    bool tbool = false;
-    for(short i = 0; i < this->values_.size(); i++)
+    int id = this->SectionExists(name);
+    if(id != -1)
     {
-      if(this->values_[i].GetName() == name)
+      return &(this->sub_sections_[id]);
+    }
+    return NULL;
+  }
+
+  int ValueSection::SectionExists(std::string name)
+  {
+    int tint = -1;
+    for(unsigned short i = 0; i < this->sub_sections_.size(); i++)
+    {
+      if(this->sub_sections_[i].GetName() == name)
       {
-        tbool = true;
+        tint = i;
         break;
       }
     }
-    return tbool;
+    return tint;
+  }
+
+  Value* ValueSection::GetValue(std::string name)
+  {
+    int id = this->ValueExists(name);
+    if(id != -1)
+    {
+      return &(this->values_[id]);
+    }
+    return NULL;
+  }
+
+  int ValueSection::ValueExists(std::string name)
+  {
+    int tint = -1;
+    for(unsigned short i = 0; i < this->values_.size(); i++)
+    {
+      if(this->values_[i].GetName() == name)
+      {
+        tint = i;
+        break;
+      }
+    }
+    return tint;
   }
 
   void ValueSection::AddValue(Value *value_to_add)
   {
     if(!value_to_add->HasName())
-      ValueError::ThrowString("NO NAME FOR VALUE");
+      ValueError::ErrorString("NO NAME FOR VALUE");
     else {
       this->values_.push_back(*value_to_add);
       this->has_values_ = true;}
@@ -55,7 +88,7 @@ namespace aval
   void ValueSection::AddSubSection(ValueSection *section_to_add)
   {
     if (!section_to_add->HasName())
-      ValueError::ThrowString("NO NAME FOR SECTION");
+      ValueError::ErrorString("NO NAME FOR SECTION");
     else {
       this->sub_sections_.push_back(*section_to_add);
       this->has_sub_sections_ = true;}

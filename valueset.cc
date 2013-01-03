@@ -1,4 +1,5 @@
 #include "value.hh"
+#include "valtree.hh"
 
 namespace aval
 {

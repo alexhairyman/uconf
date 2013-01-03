@@ -1,6 +1,6 @@
 // This is an uber simple file K boiz?
 
-#define VAL_DBG 1
+#define VAL_DBG 0
 #if VAL_DBG
   #define ifdbg(a) a
 #else
@@ -52,7 +52,7 @@ namespace aval
   class ValueSet
   {
   private:
-    std::map<std::string, Value> value_list_; ///< this is the list of values @NOTE the key includes the section as a .
+
     
   public:
     std::vector<std::string> SplitByLine(std::string alldata);

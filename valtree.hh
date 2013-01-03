@@ -1,3 +1,7 @@
+
+
+#ifndef VTREE_HH
+#define VTREE_HH
 #include <map>
 
 //try to take this out
@@ -35,8 +39,8 @@ namespace aval
     ValueSection* GetSection(std::string name);
     Value* GetValue(std::string name);
 
-    bool ValueExists(std::string name);
-    bool SectionExists(std::string name);
+    int ValueExists(std::string name);
+    int SectionExists(std::string name);
 
   };
 
@@ -52,3 +56,4 @@ namespace aval
 
   };
 }
+#endif

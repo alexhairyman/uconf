@@ -1,3 +1,6 @@
+#ifndef VERR_HH
+#define VERR_HH
+
 #include <string>
 
 namespace aval
@@ -10,7 +13,9 @@ namespace aval
     bool isrecoverable_;
   public:
     ValueError(std::string why, std::string offendingdata, bool isrecoverable);
-    static void ThrowString(std::string tstr);
+    static void ErrorString(std::string tstr);
 
   };
 }
+
+#endif
