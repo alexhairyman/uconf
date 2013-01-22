@@ -22,30 +22,43 @@ namespace aval
 {
   const std::string TOK_CHARS = "abcdefghijklmnopqrstuvwxyz_1234567890";
   class Value
-  {
+  { 
   private:
     bool has_name_;
     std::string name_;
     std::string keyval_;
     static int AsIntegral(std::string value);
     static double AsDouble(std::string value);
-    
+
   public:
+    
+    // template<typename T> T As();
+
     /** creates a 'broken' Value, but allows on the fly init later */
     Value();
     /** this will be used when actually parseing(spelling?) and such */
     Value(std::string name, std::string valstr);
-
     std::string GetName();
     void SetValue(std::string* valstr);
     void SetName(std::string* name);
     bool HasName();
+    
+    /// @todo replace with AsString
+    std::string GetStrVal();
+
+
+    std::string AsString();
+    int AsInt();
+    const char* AsCString();
+    bool AsBool();
+    // operators
     void operator ()(std::string valstr);
-    operator std::string();
-    operator int();
-    // operator long(); // not quite yet
-    //operator double();
-    operator char*();
+    std::string operator()();
+    
+    // operator std::string();
+    // operator int();
+    // operator char*();
+    // operator bool();
     
   };
 
@@ -64,5 +77,9 @@ namespace aval
   };
   //#include "valuetree.hh"
 }
+
+/*#ifndef VALUE_TCC
+  #include "value.tcc"
+  #endif*/
 
 #endif

@@ -13,4 +13,13 @@ namespace aval
     return ;
   }
 
+  ValueError::ValueError(std::string why, std::string offendingdata, bool isrecoverable)
+  {
+    std::cout << std::setfill('~') << std::setw(25) << "" << std::endl <<
+      "ERROR: " << why << std::endl << "OFFENDING DATA [NULL IF INTERNAL]: " << offendingdata << 
+      std::endl << "IS RECOVERABLE [NO]: " << isrecoverable << std::endl <<
+      std::setw(25) << "" << std::endl;
+
+  }
+
 }

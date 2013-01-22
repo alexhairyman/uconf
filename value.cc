@@ -1,4 +1,5 @@
 #include "value.hh"
+#include "valerr.hh"
 
 #define scti SingCharToInt
 int SingleCharToInt(char c)
@@ -22,6 +23,11 @@ namespace aval
     this->SetValue(&valstr);
   }
 
+  bool Value::HasName()
+  {
+    return this->has_name_;
+  }
+
   std::string Value::GetName()
   {
     return this->name_;
@@ -40,19 +46,51 @@ namespace aval
     this->keyval_ = *valstr;
   }
 
+  std::string Value::GetStrVal()
+  {
+    return this->keyval_;
+  }
+
+  std::string Value::operator()()
+  {
+    return this->keyval_;
+  }
+
   void Value::operator()(std::string valstr)
   {
     this->SetValue(&valstr);
   }
 
-  Value::operator std::string()
+  // Value::operator std::string()
+  std::string Value::AsString()
   {
     return this->keyval_;
   }
 
-  Value::operator int()
+  // Value::operator int()
+  int Value::AsInt()
   {
     return Value::AsIntegral(this->keyval_);
+  }
+
+  /// @todo make this accept lower case trues and falses, and 1 or 0
+  // Value::operator bool()
+  bool Value::AsBool()
+  {
+    bool tbool;
+    if(this->keyval_ == "TRUE" || this->keyval_ == "true")
+      tbool = true;
+    else if(this->keyval_ == "FALSE" || this->keyval_ == "false")
+      tbool = false;
+    else
+      ValueError ERR ("INCORRECT BOOL ARG", this->keyval_, false);
+
+    return tbool;
+  }
+
+  const char* Value::AsCString()
+  {
+    return this->keyval_.c_str();
   }
 
   int Value::AsIntegral(std::string value)

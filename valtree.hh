@@ -1,5 +1,3 @@
-
-
 #ifndef VTREE_HH
 #define VTREE_HH
 #include <map>
@@ -14,7 +12,6 @@ namespace aval
   class ValueSection
   {
   private:
-
     std::string name_;
     bool has_name_;
     bool has_sub_sections_;
@@ -24,7 +21,7 @@ namespace aval
     std::vector<Value> values_;
 
   public:
-
+    
     ValueSection();
     std::string GetName();
     void SetName(std::string name);
@@ -32,9 +29,7 @@ namespace aval
 
     void AddValue(Value* value_to_add);
     void AddSubSection(ValueSection* section_to_add);
-
-    void AddValue(Value value_to_add); ///< takes the pointer and uses the above function
-    void AddSubSection(ValueSection section_to_add); ///< same here
+    // void AddSubSection(ValueSection section_to_add); ///< same here
 
     ValueSection* GetSection(std::string name);
     Value* GetValue(std::string name);

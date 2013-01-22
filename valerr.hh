@@ -13,6 +13,7 @@ namespace aval
     bool isrecoverable_;
   public:
     ValueError(std::string why, std::string offendingdata, bool isrecoverable);
+    ValueError(std::string why, bool isrecoverable);
     static void ErrorString(std::string tstr);
 
   };
