@@ -2,9 +2,9 @@
 
 #define VAL_DBG 0
 #if VAL_DBG
-  #define ifdbg(a) a
+#define ifdbg(a) a
 #else
-  #define ifdbg(a) 
+#define ifdbg(a) 
 #endif
 
 #ifndef VAL_HH
@@ -12,16 +12,31 @@
 
 
 #include <cstdlib>
-#include <iostream>
 #include <string>
-#include <vector>
-#include <map>
-#include <iomanip>
+#include <cctype>
+// #include <iostream>
+// #include <iomanip>
 
 namespace aval
 {
   const std::string TOK_CHARS = "abcdefghijklmnopqrstuvwxyz_1234567890";
-  class Value
+
+  class UValue
+  {
+    // TO BE IMPLEMENTED
+  };
+
+  class Array : public UValue
+  {
+    // TO BE IMPLEMENTED
+  };
+
+  class Dict : public UValue
+  {
+    // TO BE IMPLEMENTED
+  };
+
+  class Value : public UValue
   { 
   private:
     bool has_name_;
@@ -32,8 +47,6 @@ namespace aval
 
   public:
     
-    // template<typename T> T As();
-
     /** creates a 'broken' Value, but allows on the fly init later */
     Value();
     /** this will be used when actually parseing(spelling?) and such */
@@ -45,8 +58,8 @@ namespace aval
     
     /// @todo replace with AsString
     std::string GetStrVal();
-
-
+    
+    
     std::string AsString();
     int AsInt();
     const char* AsCString();
@@ -54,32 +67,9 @@ namespace aval
     // operators
     void operator ()(std::string valstr);
     std::string operator()();
-    
-    // operator std::string();
-    // operator int();
-    // operator char*();
-    // operator bool();
-    
-  };
 
-  class ValueSet
-  {
-  private:
-
-    
-  public:
-    std::vector<std::string> SplitByLine(std::string alldata);
-    std::vector<std::string> Strip(std::vector <std::string> linelist);
-    void ParseConfigs(std::vector<std::string> goodlinelist);
-    Value GetValue(std::string keypath);
-    // std::string SetValue();
-    
   };
-  //#include "valuetree.hh"
+  
 }
-
-/*#ifndef VALUE_TCC
-  #include "value.tcc"
-  #endif*/
 
 #endif

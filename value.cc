@@ -70,7 +70,14 @@ namespace aval
   // Value::operator int()
   int Value::AsInt()
   {
-    return Value::AsIntegral(this->keyval_);
+    int tint;
+    for(int i = 0; i < this->keyval_.length(); i++)
+      if (std::isdigit(this->keyval_.at(i)) == 0) {
+        ValueError ERR("INCORRECT INT ARG", this->keyval_.substr(i, i+1), false); break;}
+      else
+        tint = Value::AsIntegral(this->keyval_);
+    
+    return tint;
   }
 
   /// @todo make this accept lower case trues and falses, and 1 or 0
@@ -82,8 +89,8 @@ namespace aval
       tbool = true;
     else if(this->keyval_ == "FALSE" || this->keyval_ == "false")
       tbool = false;
-    else
-      ValueError ERR ("INCORRECT BOOL ARG", this->keyval_, false);
+    else{
+      ValueError ERR ("INCORRECT BOOL ARG", this->keyval_, false); return NULL;}
 
     return tbool;
   }

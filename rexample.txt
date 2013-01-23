@@ -1,0 +1,33 @@
+## # style comments
+
+## I kinda liked lighttpd's configuration style, so here is something similar
+
+# strings /should/ be formatted with "strgoes here", but I'm not totally decided on enforcing that yet
+
+
+#you don't technically have to use {}, it just makes it easier
+root
+{
+  name = "root"
+}
+
+root.alex@name = "alexroot"
+root.alex@age = 16 #integer
+
+root.alex
+{
+  str = "alex"
+  inalex = TRUE #bool
+}
+
+root.alex.mysec
+{
+  name = "mysection"
+  blah = "bleh"
+  compressors = ("bz2", "gz", "xz") #this will probably be a vector, notice, () is list, while... ( see below )
+  switches = [DEBUG = TRUE, USEBOOST = FALSE, THREADS = 3, PREFIX = "/usr/local"] # [] is a dictionary
+}
+
+root.newname = newroot # changing a variable in root
+root.alex.newname = newalexroot # changing root.alex.newname
+root.alex = blah # BAD BAD BAD BAD

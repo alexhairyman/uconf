@@ -1,5 +1,4 @@
 #include "valtree.hh"
-
 #include "valerr.hh"
 
 namespace aval
@@ -33,7 +32,7 @@ namespace aval
     int id = this->SectionExists(name);
     if(id != -1)
     {
-      return &(this->sub_sections_[id]);
+      return this->sub_sections_[id];
     }
     return NULL;
   }
@@ -43,7 +42,7 @@ namespace aval
     int tint = -1;
     for(unsigned short i = 0; i < this->sub_sections_.size(); i++)
     {
-      if(this->sub_sections_[i].GetName() == name)
+      if(this->sub_sections_[i]->GetName() == name)
       {
         tint = i;
         break;
@@ -57,7 +56,7 @@ namespace aval
     int id = this->ValueExists(name);
     if(id != -1)
     {
-      return &(this->values_[id]);
+      return this->values_[id];
     }
     return NULL;
   }
@@ -67,7 +66,7 @@ namespace aval
     int tint = -1;
     for(unsigned short i = 0; i < this->values_.size(); i++)
     {
-      if(this->values_[i].GetName() == name)
+      if(this->values_[i]->GetName() == name)
       {
         tint = i;
         break;
@@ -81,7 +80,7 @@ namespace aval
     if(!value_to_add->HasName())
       ValueError::ErrorString("NO NAME FOR VALUE");
     else {
-      this->values_.push_back(*value_to_add);
+      this->values_.push_back(value_to_add);
       this->has_values_ = true;}
   }
 
@@ -90,7 +89,7 @@ namespace aval
     if (!section_to_add->HasName())
       ValueError::ErrorString("NO NAME FOR SECTION");
     else {
-      this->sub_sections_.push_back(*section_to_add);
+      this->sub_sections_.push_back(section_to_add);
       this->has_sub_sections_ = true;}
   }
 

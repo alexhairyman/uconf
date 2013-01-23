@@ -5,7 +5,7 @@ set(CMAKE_CXX_COMPILER "clang")
 set(CONFHEADERS "value.hh")
 add_custom_target(headers SOURCES ${CONFHEADERS})
 
-add_library(uvallib "value.cc" "valueset.cc" "valtree.cc" "valerr.cc")
+add_library(uvallib "value.cc" "valtree.cc" "valerr.cc")
 
 add_executable(uconfcom "test.cc")
 target_link_libraries(uconfcom stdc++ uvallib)

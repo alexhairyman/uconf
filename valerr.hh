@@ -2,6 +2,7 @@
 #define VERR_HH
 
 #include <string>
+#include "value.hh"
 
 namespace aval
 {

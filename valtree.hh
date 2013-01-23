@@ -15,10 +15,10 @@ namespace aval
     std::string name_;
     bool has_name_;
     bool has_sub_sections_;
-    std::vector<ValueSection> sub_sections_;
+    std::vector<ValueSection*> sub_sections_;
     
     bool has_values_;
-    std::vector<Value> values_;
+    std::vector<Value*> values_;
 
   public:
     
