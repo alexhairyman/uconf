@@ -44,6 +44,7 @@ int main()
   cout << "last as string:" << alexsec.GetValue("last")->AsString() << endl;
   cout << "age as int:" << alexsec.GetValue("age")->AsInt() << endl;
   cout << "first as int:" << alexsec.GetValue("first")->AsInt() << endl;
+  cout << "first as string:" << alexsec.GetValue("first")->AsString() << endl;
   cout << "uses_linux as bool:" << alexsec.GetValue("uses_linux")->AsBool() << endl;
 
   rootsec.AddSubSection(&alexsec);

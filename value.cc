@@ -11,6 +11,11 @@ int SingleCharToInt(char c)
 
 namespace aval
 {
+  char* UValue::ToRawData()
+  {
+    return "nothing here yet boys";
+  }
+
   Value::Value()
   {
     this->has_name_ = false;
@@ -46,10 +51,12 @@ namespace aval
     this->keyval_ = *valstr;
   }
 
+#ifdef I_WANT_TO_FAIL_NOW_PLZ
   std::string Value::GetStrVal()
   {
     return this->keyval_;
   }
+#endif
 
   std::string Value::operator()()
   {
@@ -85,9 +92,9 @@ namespace aval
   bool Value::AsBool()
   {
     bool tbool;
-    if(this->keyval_ == "TRUE" || this->keyval_ == "true")
+    if(this->keyval_ == "TRUE" || this->keyval_ == "true" || this->keyval_ == "1")
       tbool = true;
-    else if(this->keyval_ == "FALSE" || this->keyval_ == "false")
+    else if(this->keyval_ == "FALSE" || this->keyval_ == "false" || this->keyval_ == "0")
       tbool = false;
     else{
       ValueError ERR ("INCORRECT BOOL ARG", this->keyval_, false); return NULL;}

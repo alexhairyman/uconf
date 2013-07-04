@@ -56,7 +56,7 @@ namespace aval
     int id = this->ValueExists(name);
     if(id != -1)
     {
-      return this->values_[id];
+      return (Value*) this->values_[id];
     }
     return NULL;
   }
@@ -66,7 +66,7 @@ namespace aval
     int tint = -1;
     for(unsigned short i = 0; i < this->values_.size(); i++)
     {
-      if(this->values_[i]->GetName() == name)
+      if(((Value*) this->values_[i])->GetName() == name)
       {
         tint = i;
         break;
