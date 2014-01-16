@@ -40,19 +40,30 @@ int main()
   alexsec.AddValue(new Value("age", "16"));
   alexsec.AddValue(new Value("uses_linux", "TRUE"));
 
-  cout << "first as bool:" << alexsec.GetValue("first")->AsBool() << endl;
-  cout << "last as string:" << alexsec.GetValue("last")->AsString() << endl;
-  cout << "age as int:" << alexsec.GetValue("age")->AsInt() << endl;
-  cout << "first as int:" << alexsec.GetValue("first")->AsInt() << endl;
-  cout << "first as string:" << alexsec.GetValue("first")->AsString() << endl;
-  cout << "uses_linux as bool:" << alexsec.GetValue("uses_linux")->AsBool() << endl;
+  cout << "first as bool: " << alexsec.GetValue("first")->AsBool() << endl;
+  cout << "last as string: " << alexsec.GetValue("last")->AsString() << endl;
+  cout << "age as int: " << alexsec.GetValue("age")->AsInt() << endl;
+  cout << "first as int: " << alexsec.GetValue("first")->AsInt() << endl;
+  cout << "first as string: " << alexsec.GetValue("first")->AsString() << endl;
+  cout << "uses_linux as bool: " << alexsec.GetValue("uses_linux")->AsBool() << endl;
+  cout << "uses_linux as ToRawData: " << alexsec.GetValue("uses_linux")->ToRawData() << endl;
 
   rootsec.AddSubSection(&alexsec);
-  cout << "root has alex? returns index or -1 if nonexistant:" << rootsec.SectionExists("ALEX") << endl;
+  cout << "root has alex? returns index or -1 if nonexistant: " << rootsec.SectionExists("ALEX") << endl;
   alexsec.AddSubSection(&mesec);
-  cout << "root has alex which has mysec?:" << rootsec.GetSection("ALEX")->SectionExists("mysec") << endl;
+  cout << "root has alex which has mysec?: " << rootsec.GetSection("ALEX")->SectionExists("mysec") << endl;
 
-  cout << "root has alexsec which has nick?:" << rootsec.GetSection("ALEX")->GetValue("nick")->AsString() << endl;
+  cout << "root has alexsec which has nick?: " << rootsec.GetSection("ALEX")->GetValue("nick")->AsString() << endl;
+  // template chekcs
+  aval::Storage<char> something_something;
+  cout << "template test for storage template: " << something_something.template_test() << endl;
+  something_something.FillType('a');
+  cout << "returning something_something's char value: " << something_something.AsType() << endl;
+  something_something.FillType('b');
+  cout << "returning something_something's char value: " << something_something.AsType() << endl;
+
+  aval::SInt someint;
+  someint.FillType(59);
 
   //  std::cout << alexsec
   return 0;

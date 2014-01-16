@@ -19,24 +19,43 @@
 // #include <iostream>
 // #include <iomanip>
 
+#include "storage.template.hh"
+
 namespace aval
 {
+#define STORAGE_TEMPLATE 0
+#if STORAGE_TEMPLATE == 1
+  template <class T> class Storage{}; ///< Parent Storage class template
+  template <> class Storage<int>{}; ///< Storage for integer
+  template <> class Storage<double>{}; ///< storage class for a double
+  template <> class Storage<std::string>{}; ///< Storage for string values
+  template <> class Storage<bool> {};
+  typedef Storage<int> SInt;
+  typedef Storage<double> SDouble;
+  typedef Storage<std::string> SString;
+  typedef Storage<bool> SBool;
+#endif
+
   enum Value_t
     {
       VALUE,
       ARRAY,
-      DICT,
-      CHILD ///< still berry much in flux right now
+      DICT
+      //,CHILD ///< still berry much in flux right now
     };
   const std::string TOK_CHARS = "abcdefghijklmnopqrstuvwxyz_1234567890";
 
   class UValue
   {
-    virtual char* ToRawData(); ///< function for getting at the pure raw data of whatever the contents are, may not be pretty though :) just a fair warning
+  protected:
+    Value_t vtype_;
+  public:
+    virtual char* ToRawData(); ///< function for getting at the pure raw data of whatever the contents are, may not be pretty though
     // TO BE IMPLEMENTED
   };
 
   /// array child element
+  /// @warning probably not going to continue to exist, or will inherit from Value
   class Child : public UValue
   {
 
@@ -47,7 +66,7 @@ namespace aval
   class Array : public UValue
   {
   private:
-    std::vector<Child*> childs_;
+    std::vector<UValue*> childs_;
     // TO BE IMPLEMENTED
   };
 
@@ -55,16 +74,23 @@ namespace aval
   /// @todo probably use plain Value for this, would make things helluva lot easier
   class Dict : public UValue
   {
+  private:
+    std::vector<UValue*> childs_;
     // TO BE IMPLEMENTED
   };
-
+  /**
+   * @brief The Value class
+   * @todo I think I should change the key value to a void* (in a template)
+   */
   class Value : public UValue
   { 
   private:
     bool has_name_;
+    bool has_val_;
+
     std::string name_;
     std::string keyval_;
-    static int AsIntegral(std::string value);
+    static int AsInteger(std::string value);
     static double AsDouble(std::string value);
 
   public:

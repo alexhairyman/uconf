@@ -13,17 +13,20 @@ namespace aval
 {
   char* UValue::ToRawData()
   {
-    return "nothing here yet boys";
+    const char* return_message = "Nothing here yet boys";
+    return (char*) return_message;
   }
 
   Value::Value()
   {
     this->has_name_ = false;
+    this->has_val_ = false;
   }
 
   Value::Value(std::string name, std::string valstr)
   {
-    this->has_name_ = false;
+    this->has_name_ = true;
+    this->has_val_ = true;
     this->SetName(&name);
     this->SetValue(&valstr);
   }
@@ -48,6 +51,7 @@ namespace aval
   /** @todo same, why the pointer */
   void Value::SetValue(std::string *valstr)
   {
+    this->has_val_ = true;
     this->keyval_ = *valstr;
   }
 
@@ -82,7 +86,7 @@ namespace aval
       if (std::isdigit(this->keyval_.at(i)) == 0) {
         ValueError ERR("INCORRECT INT ARG", this->keyval_.substr(i, i+1), false); break;}
       else
-        tint = Value::AsIntegral(this->keyval_);
+        tint = Value::AsInteger(this->keyval_);
     
     return tint;
   }
@@ -107,7 +111,7 @@ namespace aval
     return this->keyval_.c_str();
   }
 
-  int Value::AsIntegral(std::string value)
+  int Value::AsInteger(std::string value)
   {
     return atoi(value.c_str());
   }
