@@ -56,7 +56,7 @@ int main()
   cout << "root has alexsec which has nick?: " << rootsec.GetSection("ALEX")->GetValue("nick")->AsString() << endl;
   // template chekcs
   aval::Storage<char> something_something;
-  cout << "template test for storage template: " << something_something.template_test() << endl;
+  cout << "template test for storage template: " << something_something.template_test_func_() << endl;
   something_something.FillType('a');
   cout << "returning something_something's char value: " << something_something.AsType() << endl;
   something_something.FillType('b');

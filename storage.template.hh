@@ -8,7 +8,8 @@ namespace aval
     T storage_type_;
 
   public:
-    char* template_test() {return (char*)"To be or not to be";}
+    char* template_test_func_() {return (char*)"To be or not to be";}
+
     void FillType(T setas)
     {
       storage_type_ = setas;
