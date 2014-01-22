@@ -105,8 +105,6 @@ namespace aval
 
     return tbool;
   }
-<<<<<<< HEAD
-=======
 
   const char* Value::AsCString()
   {
@@ -117,5 +115,5 @@ namespace aval
   {
     return atoi(value.c_str());
   }
->>>>>>> FINISHIT
+
 }
